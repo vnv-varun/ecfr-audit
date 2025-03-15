@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import { cn, formatNumber, formatPercent, formatCompactNumber, formatDate, truncateText, getReadabilityColor, API_BASE_URL } from "@/lib"
+import { cn, formatNumber, formatPercent, formatCompactNumber, formatDate, truncateText, getReadabilityColor, API_BASE_URL } from "../utils"
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {}

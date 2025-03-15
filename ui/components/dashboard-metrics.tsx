@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { Card, CardContent, CardHeader, CardTitle, CardFooter, CardDescription } from './ui/card'
-import { formatCompactNumber, formatNumber } from '@/lib/utils'
+import { formatCompactNumber, formatNumber } from './utils'
 import {
   Tabs,
   TabsContent,

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { API_BASE_URL } from '@/lib'
+import { API_BASE_URL } from '../../../components/utils'
 
 export async function POST(request: NextRequest) {
   try {

@@ -1,6 +1,6 @@
 "use client"
 
-import { cn, formatNumber, formatPercent, formatCompactNumber, formatDate, truncateText, getReadabilityColor, API_BASE_URL } from "@/lib"
+import { cn, formatNumber, formatPercent, formatCompactNumber, formatDate, truncateText, getReadabilityColor, API_BASE_URL } from "../utils"
 import { useEffect, useState } from "react"
 
 function Skeleton({

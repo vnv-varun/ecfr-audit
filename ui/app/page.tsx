@@ -5,8 +5,7 @@ import { RefreshButton } from '@/components/refresh-button'
 import DashboardMetrics from '@/components/dashboard-metrics'
 import { useToast } from '@/components/ui/use-toast'
 import { BookOpen } from 'lucide-react'
-
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://ecfr-analyzer-api.vnv-varun.workers.dev'
+import { API_BASE_URL } from '../components/utils'
 
 interface SummaryMetrics {
   totalWords: number

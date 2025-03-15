@@ -12,7 +12,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Book, BarChart2, LineChart as LineChartIcon, HelpCircle, BookOpen } from "lucide-react"
-import { cn, formatNumber, formatPercent, formatCompactNumber, formatDate, truncateText, getReadabilityColor, API_BASE_URL } from "@/lib"
+import { formatCompactNumber } from "./utils"
 
 export interface TitleData {
   number: number

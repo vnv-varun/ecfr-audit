@@ -1,0 +1,17 @@
+# Cloudflare Worker configuration for backend API
+name = "ecfr-analyzer-api"
+compatibility_date = "2023-05-18"
+workers_dev = true
+
+# We need to use a JS worker as a proxy since Python Workers are still experimental
+main = "worker-proxy.js"
+
+[vars]
+ENVIRONMENT = "production"
+
+# D1 database for Cloudflare storage
+# Created with: npx wrangler d1 create ecfr-analyzer-db
+[[d1_databases]]
+binding = "DB"
+database_name = "ecfr-analyzer-db"
+database_id = "c56b031f-c140-43e4-b629-aed59da00dc2"

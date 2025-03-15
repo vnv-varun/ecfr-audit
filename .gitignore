@@ -1,0 +1,80 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+.pytest_cache/
+.coverage
+htmlcov/
+coverage.xml
+*.cover
+.coverage.*
+.cache/
+
+# Virtual Environments
+venv/
+env/
+ENV/
+
+# IDEs and editors
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+CLAUDE.md
+
+# Next.js
+ui/.next/
+ui/out/
+ui/build
+ui/node_modules/
+ui/npm-debug.log*
+ui/yarn-debug.log*
+ui/yarn-error.log*
+ui/.pnpm-debug.log*
+ui/.vercel
+
+# Backend dependencies
+backend/node_modules/
+node_modules/
+
+# Data
+data/cache/*
+!data/cache/.gitkeep
+data/formatted/*
+!data/formatted/.gitkeep
+data/plain/*
+!data/plain/.gitkeep
+data/xml/*
+!data/xml/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+backend/data/cache/*
+!backend/data/cache/.gitkeep
+backend/data/processed/*
+!backend/data/processed/.gitkeep
+backend/data/xml/*
+!backend/data/xml/.gitkeep
+*.db
+*.db-shm
+*.db-wal
+
+# Log files
+*.log

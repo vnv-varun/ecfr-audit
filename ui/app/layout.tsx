@@ -37,7 +37,7 @@ export default function RootLayout({
               {children}
             </div>
             <footer className="border-t py-6 md:py-0">
-              <div className="container flex flex-col items-center justify-between gap-4 md:h-16 md:flex-row">
+              <div className="container flex flex-col items-center justify-between gap-3 py-4 sm:h-16 sm:py-0 sm:flex-row">
                 <p className="text-sm text-muted-foreground">
                   &copy; {new Date().getFullYear()} eCFR Analyzer. All rights reserved.
                 </p>

@@ -155,7 +155,6 @@ export default function DashboardMetrics() {
   const [metrics, setMetrics] = useState<any>(null)
   const [loading, setLoading] = useState(true)
   const [searchQuery, setSearchQuery] = useState("")
-  const [activeMetricsInfo, setActiveMetricsInfo] = useState<string | null>(null)
   const [selectedAgency, setSelectedAgency] = useState<any>(null) // Will be used for both agencies and titles
   const [dialogOpen, setDialogOpen] = useState(false)
   const [sortOption, setSortOption] = useState<string>("wordCount-desc")
@@ -573,7 +572,7 @@ export default function DashboardMetrics() {
   return (
     <div className="space-y-8">
       {/* Summary Cards - First Row */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-6">
         <Card className="bg-card hover:shadow-md transition-all">
           <CardHeader className="pb-2 flex flex-row items-start justify-between space-y-0">
             <div>
@@ -693,7 +692,7 @@ export default function DashboardMetrics() {
       </div>
 
       {/* Additional Metrics Cards - Second Row */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-6">
         <Card className="bg-government/10 dark:bg-government/20 hover:shadow-md transition-all">
           <CardHeader className="pb-2 flex flex-row items-start justify-between space-y-0">
             <div>
@@ -774,11 +773,11 @@ export default function DashboardMetrics() {
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 gap-3">
           <h2 className="text-xl font-semibold">Regulation Metrics</h2>
           
-          <div className="flex flex-col md:flex-row gap-3 w-full sm:w-auto">
+          <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
             {/* Search and Sort Row */}
             <div className="flex flex-col lg:flex-row gap-3 w-full">
               {/* Search Box */}
-              <div className="relative w-full md:w-64">
+              <div className="relative w-full sm:w-64">
                 <input
                   type="text"
                   placeholder="Search agencies or titles..."
@@ -839,97 +838,28 @@ export default function DashboardMetrics() {
             
             {/* Tab List */}
             <div className="w-full lg:w-auto">
-              <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="wordCount" className="px-4">
-                  <BarChart2 className="h-4 w-4 mr-2" />
-                  Analytics
+              <TabsList className="grid w-full grid-cols-2 tabs-list">
+                <TabsTrigger value="wordCount" className="px-2 sm:px-4 py-2 text-sm">
+                  <BarChart2 className="h-4 w-4 mr-1 sm:mr-2" />
+                  <span>Analytics</span>
                 </TabsTrigger>
-                <TabsTrigger value="distribution" className="px-4">
-                  <PieChartIcon className="h-4 w-4 mr-2" />
-                  Distribution
+                <TabsTrigger value="distribution" className="px-2 sm:px-4 py-2 text-sm">
+                  <PieChartIcon className="h-4 w-4 mr-1 sm:mr-2" />
+                  <span>Distribution</span>
                 </TabsTrigger>
               </TabsList>
             </div>
           </div>
         </div>
         
-        {/* Metrics Info Dialog */}
-        {activeMetricsInfo && (
-          <div className="bg-muted/50 border p-4 rounded-lg mb-4 relative">
-            <button 
-              className="absolute top-2 right-2 text-muted-foreground hover:text-foreground"
-              onClick={() => setActiveMetricsInfo(null)}
-            >
-              <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z" fill="currentColor" fillRule="evenodd" clipRule="evenodd"></path>
-              </svg>
-            </button>
-            
-            {activeMetricsInfo === 'readability' && (
-              <div className="space-y-2">
-                <h3 className="font-semibold">About Readability Scores</h3>
-                <p className="text-sm text-muted-foreground">Readability scores measure how easy or difficult regulatory text is to comprehend. We use the Flesch Reading Ease formula, which analyzes factors like sentence length and word complexity.</p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2">
-                  <div className="text-sm">
-                    <div className="font-medium">Score 80-100: <span className="text-emerald-500">Very Easy</span></div>
-                    <div className="text-muted-foreground text-xs">5th Grade Level (10-11 year olds)</div>
-                  </div>
-                  <div className="text-sm">
-                    <div className="font-medium">Score 60-80: <span className="text-lime-500">Easy</span></div>
-                    <div className="text-muted-foreground text-xs">8th-9th Grade Level (13-15 year olds)</div>
-                  </div>
-                  <div className="text-sm">
-                    <div className="font-medium">Score 50-60: <span className="text-amber-400">Standard</span></div>
-                    <div className="text-muted-foreground text-xs">10th-12th Grade Level (15-18 year olds)</div>
-                  </div>
-                  <div className="text-sm">
-                    <div className="font-medium">Score 30-50: <span className="text-amber-500">Moderately Difficult</span></div>
-                    <div className="text-muted-foreground text-xs">College Level (18-22 year olds)</div>
-                  </div>
-                  <div className="text-sm">
-                    <div className="font-medium">Score 0-30: <span className="text-red-500">Very Difficult</span></div>
-                    <div className="text-muted-foreground text-xs">College Graduate/Professional (22+ year olds)</div>
-                  </div>
-                </div>
-                <p className="text-xs text-muted-foreground pt-1">Formula: 206.835 - (1.015 × Average Sentence Length) - (84.6 × Average Syllables per Word)</p>
-              </div>
-            )}
-            
-            {activeMetricsInfo === 'wordCount' && (
-              <div className="space-y-2">
-                <h3 className="font-semibold">About Word Count Analysis</h3>
-                <p className="text-sm text-muted-foreground">Word count metrics measure the volume of regulatory text maintained by each agency. We extract and count individual words from all regulatory documents contained in the eCFR data.</p>
-                <div className="space-y-1 pt-1">
-                  <div className="text-sm">
-                    <span className="font-medium">Words:</span>
-                    <span className="text-muted-foreground text-xs ml-1">Total number of words in all regulatory documents.</span>
-                  </div>
-                  <div className="text-sm">
-                    <span className="font-medium">Sections:</span>
-                    <span className="text-muted-foreground text-xs ml-1">Individual regulation sections within the agency's title(s).</span>
-                  </div>
-                  <div className="text-sm">
-                    <span className="font-medium">Paragraphs:</span>
-                    <span className="text-muted-foreground text-xs ml-1">Distinct paragraphs identified in the regulatory text.</span>
-                  </div>
-                  <div className="text-sm">
-                    <span className="font-medium">Pages:</span>
-                    <span className="text-muted-foreground text-xs ml-1">Estimated page count (500 words per page standard).</span>
-                  </div>
-                </div>
-                <p className="text-xs text-muted-foreground pt-1">Data from: Electronic Code of Federal Regulations (eCFR) XML bulk data downloads</p>
-              </div>
-            )}
-          </div>
-        )}
 
         {/* Analytics Tab (Combined Word Count and Complexity metrics) */}
         <TabsContent value="wordCount" className="space-y-4">
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center justify-between">
+              <CardTitle className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                 <span>Regulatory Agency Analytics</span>
-                <div className="flex gap-2">
+                <div className="flex flex-wrap gap-2">
                   <Button 
                     variant="outline" 
                     size="sm" 
@@ -942,24 +872,91 @@ export default function DashboardMetrics() {
                     <RefreshCw className="h-3 w-3 mr-1" />
                     <span className="text-xs">Refresh Data</span>
                   </Button>
-                  <button 
-                    onClick={() => setActiveMetricsInfo('wordCount')}
-                    className="text-xs text-muted-foreground hover:text-primary flex items-center"
-                  >
-                    <svg width="15" height="15" viewBox="0 0 15 15" className="mr-1" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M7.49991 0.876892C3.84222 0.876892 0.877075 3.84204 0.877075 7.49972C0.877075 11.1574 3.84222 14.1226 7.49991 14.1226C11.1576 14.1226 14.1227 11.1574 14.1227 7.49972C14.1227 3.84204 11.1576 0.876892 7.49991 0.876892ZM1.82707 7.49972C1.82707 4.36671 4.36689 1.82689 7.49991 1.82689C10.6329 1.82689 13.1727 4.36671 13.1727 7.49972C13.1727 10.6327 10.6329 13.1726 7.49991 13.1726C4.36689 13.1726 1.82707 10.6327 1.82707 7.49972ZM8.24992 4.49999C8.24992 4.9142 7.91413 5.24999 7.49992 5.24999C7.08571 5.24999 6.74992 4.9142 6.74992 4.49999C6.74992 4.08577 7.08571 3.74999 7.49992 3.74999C7.91413 3.74999 8.24992 4.08577 8.24992 4.49999ZM6.00003 5.99999H6.50003H7.50003C7.77618 5.99999 8.00003 6.22384 8.00003 6.49999V9.99999H8.50003H9.00003V11H8.50003H7.50003H6.50003H6.00003V9.99999H6.50003H7.00003V6.99999H6.50003H6.00003V5.99999Z" fill="currentColor" fillRule="evenodd" clipRule="evenodd"></path>
-                    </svg>
-                    About Word Count
-                  </button>
-                  <button 
-                    onClick={() => setActiveMetricsInfo('readability')}
-                    className="text-xs text-muted-foreground hover:text-primary flex items-center"
-                  >
-                    <svg width="15" height="15" viewBox="0 0 15 15" className="mr-1" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M7.49991 0.876892C3.84222 0.876892 0.877075 3.84204 0.877075 7.49972C0.877075 11.1574 3.84222 14.1226 7.49991 14.1226C11.1576 14.1226 14.1227 11.1574 14.1227 7.49972C14.1227 3.84204 11.1576 0.876892 7.49991 0.876892ZM1.82707 7.49972C1.82707 4.36671 4.36689 1.82689 7.49991 1.82689C10.6329 1.82689 13.1727 4.36671 13.1727 7.49972C13.1727 10.6327 10.6329 13.1726 7.49991 13.1726C4.36689 13.1726 1.82707 10.6327 1.82707 7.49972ZM8.24992 4.49999C8.24992 4.9142 7.91413 5.24999 7.49992 5.24999C7.08571 5.24999 6.74992 4.9142 6.74992 4.49999C6.74992 4.08577 7.08571 3.74999 7.49992 3.74999C7.91413 3.74999 8.24992 4.08577 8.24992 4.49999ZM6.00003 5.99999H6.50003H7.50003C7.77618 5.99999 8.00003 6.22384 8.00003 6.49999V9.99999H8.50003H9.00003V11H8.50003H7.50003H6.50003H6.00003V9.99999H6.50003H7.00003V6.99999H6.50003H6.00003V5.99999Z" fill="currentColor" fillRule="evenodd" clipRule="evenodd"></path>
-                    </svg>
-                    About Readability
-                  </button>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <button className="text-xs text-muted-foreground hover:text-primary flex items-center">
+                        <svg width="15" height="15" viewBox="0 0 15 15" className="mr-1" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M7.49991 0.876892C3.84222 0.876892 0.877075 3.84204 0.877075 7.49972C0.877075 11.1574 3.84222 14.1226 7.49991 14.1226C11.1576 14.1226 14.1227 11.1574 14.1227 7.49972C14.1227 3.84204 11.1576 0.876892 7.49991 0.876892ZM1.82707 7.49972C1.82707 4.36671 4.36689 1.82689 7.49991 1.82689C10.6329 1.82689 13.1727 4.36671 13.1727 7.49972C13.1727 10.6327 10.6329 13.1726 7.49991 13.1726C4.36689 13.1726 1.82707 10.6327 1.82707 7.49972ZM8.24992 4.49999C8.24992 4.9142 7.91413 5.24999 7.49992 5.24999C7.08571 5.24999 6.74992 4.9142 6.74992 4.49999C6.74992 4.08577 7.08571 3.74999 7.49992 3.74999C7.91413 3.74999 8.24992 4.08577 8.24992 4.49999ZM6.00003 5.99999H6.50003H7.50003C7.77618 5.99999 8.00003 6.22384 8.00003 6.49999V9.99999H8.50003H9.00003V11H8.50003H7.50003H6.50003H6.00003V9.99999H6.50003H7.00003V6.99999H6.50003H6.00003V5.99999Z" fill="currentColor" fillRule="evenodd" clipRule="evenodd"></path>
+                        </svg>
+                        About Word Count
+                      </button>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-[425px]">
+                      <DialogHeader>
+                        <DialogTitle>About Word Count Analysis</DialogTitle>
+                        <DialogDescription>
+                          Word count metrics measure the volume of regulatory text maintained by each agency.
+                        </DialogDescription>
+                      </DialogHeader>
+                      <div className="space-y-2 py-4">
+                        <p className="text-sm text-muted-foreground">We extract and count individual words from all regulatory documents contained in the eCFR data.</p>
+                        <div className="space-y-1 pt-1">
+                          <div className="text-sm">
+                            <span className="font-medium">Words:</span>
+                            <span className="text-muted-foreground text-xs ml-1">Total number of words in all regulatory documents.</span>
+                          </div>
+                          <div className="text-sm">
+                            <span className="font-medium">Sections:</span>
+                            <span className="text-muted-foreground text-xs ml-1">Individual regulation sections within the agency's title(s).</span>
+                          </div>
+                          <div className="text-sm">
+                            <span className="font-medium">Paragraphs:</span>
+                            <span className="text-muted-foreground text-xs ml-1">Distinct paragraphs identified in the regulatory text.</span>
+                          </div>
+                          <div className="text-sm">
+                            <span className="font-medium">Pages:</span>
+                            <span className="text-muted-foreground text-xs ml-1">Estimated page count (500 words per page standard).</span>
+                          </div>
+                        </div>
+                        <p className="text-xs text-muted-foreground pt-2">Data source: Electronic Code of Federal Regulations (eCFR) XML bulk data downloads</p>
+                      </div>
+                    </DialogContent>
+                  </Dialog>
+
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <button className="text-xs text-muted-foreground hover:text-primary flex items-center">
+                        <svg width="15" height="15" viewBox="0 0 15 15" className="mr-1" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M7.49991 0.876892C3.84222 0.876892 0.877075 3.84204 0.877075 7.49972C0.877075 11.1574 3.84222 14.1226 7.49991 14.1226C11.1576 14.1226 14.1227 11.1574 14.1227 7.49972C14.1227 3.84204 11.1576 0.876892 7.49991 0.876892ZM1.82707 7.49972C1.82707 4.36671 4.36689 1.82689 7.49991 1.82689C10.6329 1.82689 13.1727 4.36671 13.1727 7.49972C13.1727 10.6327 10.6329 13.1726 7.49991 13.1726C4.36689 13.1726 1.82707 10.6327 1.82707 7.49972ZM8.24992 4.49999C8.24992 4.9142 7.91413 5.24999 7.49992 5.24999C7.08571 5.24999 6.74992 4.9142 6.74992 4.49999C6.74992 4.08577 7.08571 3.74999 7.49992 3.74999C7.91413 3.74999 8.24992 4.08577 8.24992 4.49999ZM6.00003 5.99999H6.50003H7.50003C7.77618 5.99999 8.00003 6.22384 8.00003 6.49999V9.99999H8.50003H9.00003V11H8.50003H7.50003H6.50003H6.00003V9.99999H6.50003H7.00003V6.99999H6.50003H6.00003V5.99999Z" fill="currentColor" fillRule="evenodd" clipRule="evenodd"></path>
+                        </svg>
+                        About Readability
+                      </button>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-[425px]">
+                      <DialogHeader>
+                        <DialogTitle>About Readability Scores</DialogTitle>
+                        <DialogDescription>
+                          How easy or difficult regulatory text is to comprehend.
+                        </DialogDescription>
+                      </DialogHeader>
+                      <div className="space-y-2 py-4">
+                        <p className="text-sm text-muted-foreground">We use the Flesch Reading Ease formula, which analyzes factors like sentence length and word complexity.</p>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                          <div className="text-sm">
+                            <div className="font-medium">Score 80-100: <span className="text-emerald-500">Very Easy</span></div>
+                            <div className="text-muted-foreground text-xs">5th Grade Level (10-11 year olds)</div>
+                          </div>
+                          <div className="text-sm">
+                            <div className="font-medium">Score 60-80: <span className="text-lime-500">Easy</span></div>
+                            <div className="text-muted-foreground text-xs">8th-9th Grade Level (13-15 year olds)</div>
+                          </div>
+                          <div className="text-sm">
+                            <div className="font-medium">Score 50-60: <span className="text-amber-400">Standard</span></div>
+                            <div className="text-muted-foreground text-xs">10th-12th Grade Level (15-18 year olds)</div>
+                          </div>
+                          <div className="text-sm">
+                            <div className="font-medium">Score 30-50: <span className="text-amber-500">Moderately Difficult</span></div>
+                            <div className="text-muted-foreground text-xs">College Level (18-22 year olds)</div>
+                          </div>
+                          <div className="text-sm">
+                            <div className="font-medium">Score 0-30: <span className="text-red-500">Very Difficult</span></div>
+                            <div className="text-muted-foreground text-xs">College Graduate/Professional (22+ year olds)</div>
+                          </div>
+                        </div>
+                        <p className="text-xs text-muted-foreground pt-2">Formula: 206.835 - (1.015 × Average Sentence Length) - (84.6 × Average Syllables per Word)</p>
+                      </div>
+                    </DialogContent>
+                  </Dialog>
                 </div>
               </CardTitle>
               <CardDescription>
@@ -968,7 +965,7 @@ export default function DashboardMetrics() {
             </CardHeader>
             <CardContent className="h-[650px] overflow-y-auto">
               {loading ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
                   {Array(15).fill(0).map((_, i) => (
                     <div key={i} className="h-48 bg-muted/30 rounded-lg animate-pulse" />
                   ))}
@@ -1013,7 +1010,7 @@ export default function DashboardMetrics() {
                       )}
                     </div>
                   ) : (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
                       {displayedMetrics?.wordCounts.byAgency.map((agency: any, index: number) => {
                         // Get real metrics from data
                         const sectionCount = agency.sections || Math.round(agency.count / 3500); // Actual or estimated (~3500 words/section)

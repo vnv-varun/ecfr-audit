@@ -1,6 +1,6 @@
 "use client"
 
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -32,21 +32,30 @@ ChartJS.register(
   ArcElement
 )
 
+// Detect if we're on the client side
+const isClient = typeof window !== 'undefined'
+
+// Helper function to detect mobile screens
+const isMobileScreen = () => {
+  return isClient && window.innerWidth < 640
+}
+
 // Common options for all chart types
 const commonOptions = {
   responsive: true,
   maintainAspectRatio: false,
+  devicePixelRatio: 2, // Higher resolution for mobile
   plugins: {
     legend: {
       position: 'top' as const,
       labels: {
         font: {
           family: 'Inter, system-ui, sans-serif',
-          size: 12
+          size: isMobileScreen() ? 10 : 12
         },
-        padding: 20,
+        padding: isMobileScreen() ? 10 : 20,
         usePointStyle: true,
-        boxWidth: 8
+        boxWidth: isMobileScreen() ? 6 : 8
       }
     },
     tooltip: {
@@ -83,10 +92,13 @@ const commonOptions = {
       ticks: {
         font: {
           family: 'Inter, system-ui, sans-serif',
-          size: 12
+          size: isMobileScreen() ? 9 : 12
         },
         color: '#666',
-        padding: 8
+        padding: isMobileScreen() ? 4 : 8,
+        maxRotation: isMobileScreen() ? 45 : 0,
+        autoSkip: true,
+        maxTicksLimit: isMobileScreen() ? 6 : 12
       }
     },
     y: {
@@ -100,10 +112,11 @@ const commonOptions = {
       ticks: {
         font: {
           family: 'Inter, system-ui, sans-serif',
-          size: 12
+          size: isMobileScreen() ? 9 : 12
         },
         color: '#666',
-        padding: 8
+        padding: isMobileScreen() ? 4 : 8,
+        maxTicksLimit: isMobileScreen() ? 5 : 8
       }
     },
   }
@@ -160,14 +173,14 @@ export function PieChart({ data, options = {} }: PieChartProps) {
     plugins: {
       ...commonOptions.plugins,
       legend: {
-        position: 'right' as const,
+        position: isMobileScreen() ? 'bottom' : 'right' as const,
         labels: {
           font: {
             family: 'Inter, system-ui, sans-serif',
-            size: 12
+            size: isMobileScreen() ? 9 : 12
           },
           usePointStyle: true,
-          boxWidth: 8
+          boxWidth: isMobileScreen() ? 6 : 8
         }
       },
     },
@@ -193,14 +206,14 @@ export function DoughnutChart({ data, options = {} }: DoughnutChartProps) {
     plugins: {
       ...commonOptions.plugins,
       legend: {
-        position: 'right' as const,
+        position: isMobileScreen() ? 'bottom' : 'right' as const,
         labels: {
           font: {
             family: 'Inter, system-ui, sans-serif',
-            size: 12
+            size: isMobileScreen() ? 9 : 12
           },
           usePointStyle: true,
-          boxWidth: 8
+          boxWidth: isMobileScreen() ? 6 : 8
         }
       },
     },

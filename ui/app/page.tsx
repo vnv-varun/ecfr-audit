@@ -149,8 +149,8 @@ export default function Home() {
       </section>
 
       {/* Main Content */}
-      <div className="container px-4 mx-auto py-6 max-w-7xl">
-        <header className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 md:mb-10 gap-4 bg-card p-6 rounded-lg shadow-sm border-b">
+      <div className="container px-2 sm:px-4 mx-auto py-4 sm:py-6 max-w-7xl">
+        <header className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 sm:mb-6 md:mb-10 gap-4 bg-card p-4 sm:p-6 rounded-lg shadow-sm border-b">
           <div>
             <h1 className="text-3xl font-bold text-government flex items-center gap-2">
               <BookOpen className="h-6 w-6" />

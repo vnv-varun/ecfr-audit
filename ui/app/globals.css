@@ -128,7 +128,45 @@
 
 /* Responsive fixes */
 @media (max-width: 640px) {
+  /* Fix header layout on mobile */
+  header .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  header nav {
+    width: 100%;
+    justify-content: space-between;
+  }
+  html {
+    font-size: 14px;
+  }
+  
   .container {
-    @apply px-4;
+    @apply px-3;
+  }
+  
+  /* Card adjustments for mobile */
+  .card {
+    @apply px-3 py-3;
+  }
+  
+  /* Fix readability info overflow */
+  .bg-muted\/50.border.p-4.rounded-lg {
+    max-width: 100%;
+    overflow-x: auto;
+    padding: 0.75rem !important;
+  }
+  
+  /* Improve chart display on mobile */
+  .chart-container {
+    min-height: 200px;
+    max-height: 300px;
+    overflow: hidden;
+  }
+  
+  /* Make tabs more touch-friendly */
+  .tabs-list button {
+    @apply px-3 py-2;
   }
 }

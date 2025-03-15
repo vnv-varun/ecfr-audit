@@ -1144,10 +1144,7 @@ export default function DashboardMetrics() {
                               </div>
                               
                               <div className="flex items-center justify-between text-xs text-muted-foreground pt-1">
-                                <span>
-                                  <span className="text-emerald-500 font-medium">+{growthRate}%</span>
-                                  <span className="ml-1">annual growth</span>
-                                </span>
+                                <span></span>
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                   <path d="M5 12h14M12 5l7 7-7 7"/>
                                 </svg>

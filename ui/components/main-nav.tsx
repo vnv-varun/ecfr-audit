@@ -3,7 +3,7 @@
 import * as React from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { cn } from "@/lib/utils"
+import { cn, formatNumber, formatPercent, formatCompactNumber, formatDate, truncateText, getReadabilityColor, API_BASE_URL } from "@/lib"
 import { Icons } from "@/components/icons"
 
 export function MainNav() {

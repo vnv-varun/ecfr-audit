@@ -189,7 +189,12 @@ export async function GET(request: NextRequest) {
       }
     } catch (fetchError) {
       console.error('Error fetching from backend:', fetchError);
-      console.log(`Error name: ${fetchError.name}, message: ${fetchError.message}`);
+      // Type-safe error logging - handle unknown error type
+      if (fetchError instanceof Error) {
+        console.log(`Error name: ${fetchError.name}, message: ${fetchError.message}`);
+      } else {
+        console.log('Unknown error type:', fetchError);
+      }
       console.log(`Using fallback data with ${FALLBACK_METRICS?.wordCounts?.byAgency?.length || 0} agencies`);
       return NextResponse.json(FALLBACK_METRICS)
     }

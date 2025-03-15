@@ -114,13 +114,13 @@ const CollapsibleCard = React.forwardRef<HTMLDivElement, CollapsibleCardProps>(
                 handleToggle()
                 if (child.props.onClick) child.props.onClick(e)
               }
-            })
+            } as React.HTMLAttributes<HTMLDivElement> & { expanded?: boolean })
           }
           
           if (React.isValidElement(child) && child.type === CollapsibleCardContent) {
             return React.cloneElement(child, {
               expanded: actuallyExpanded,
-            })
+            } as React.HTMLAttributes<HTMLDivElement> & { expanded?: boolean })
           }
           
           return child

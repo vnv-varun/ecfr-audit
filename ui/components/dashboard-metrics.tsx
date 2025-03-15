@@ -278,12 +278,12 @@ export default function DashboardMetrics() {
         // If we don't have real data, use a deterministic algorithm based on agency characteristics
         // This creates predictable but reasonable-looking values
         if (growthA === undefined) {
-          const nameHashA = a.name.split('').reduce((hash, char) => hash + char.charCodeAt(0), 0);
+          const nameHashA = a.name.split('').reduce((hash: number, char: string) => hash + char.charCodeAt(0), 0);
           growthA = 1.2 + (a.count % 1000000) / 250000 + (nameHashA % 5) / 10;
         }
         
         if (growthB === undefined) {
-          const nameHashB = b.name.split('').reduce((hash, char) => hash + char.charCodeAt(0), 0);
+          const nameHashB = b.name.split('').reduce((hash: number, char: string) => hash + char.charCodeAt(0), 0);
           growthB = 1.2 + (b.count % 1000000) / 250000 + (nameHashB % 5) / 10;
         }
         

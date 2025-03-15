@@ -11,7 +11,7 @@ import { BarChart, LineChart, PieChart } from "@/components/ui/charts"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Book, BarChart2, LineChart as LineChartIcon, CircleHelp, BookOpen } from "lucide-react"
+import { Book, BarChart2, LineChart as LineChartIcon, HelpCircle, BookOpen } from "lucide-react"
 import { formatCompactNumber } from "@/lib/utils"
 
 export interface TitleData {
@@ -82,7 +82,7 @@ export function TitleCard({ title, onViewDetails }: TitleCardProps) {
               Historical Trends
             </TabsTrigger>
             <TabsTrigger value="distribution">
-              <PieChart className="h-4 w-4 mr-2" />
+              <BarChart2 className="h-4 w-4 mr-2" />
               Agency Distribution
             </TabsTrigger>
           </TabsList>
@@ -151,7 +151,7 @@ export function TitleCard({ title, onViewDetails }: TitleCardProps) {
               ) : (
                 <div className="h-full flex items-center justify-center">
                   <div className="text-muted-foreground flex flex-col items-center">
-                    <CircleHelp className="h-8 w-8 mb-2 opacity-50" />
+                    <HelpCircle className="h-8 w-8 mb-2 opacity-50" />
                     <p>No historical data available</p>
                   </div>
                 </div>
@@ -186,7 +186,7 @@ export function TitleCard({ title, onViewDetails }: TitleCardProps) {
               ) : (
                 <div className="h-full flex items-center justify-center">
                   <div className="text-muted-foreground flex flex-col items-center">
-                    <CircleHelp className="h-8 w-8 mb-2 opacity-50" />
+                    <HelpCircle className="h-8 w-8 mb-2 opacity-50" />
                     <p>No agency distribution data available</p>
                   </div>
                 </div>

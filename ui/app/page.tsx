@@ -55,7 +55,7 @@ export default function Home() {
         // Make real API calls to fetch the data
         const titleUrl = `${API_BASE_URL}/api/title/1`;
         const titleResponse = await fetch(titleUrl, {
-          cache: 'no-store',
+          cache: 'no-store' as RequestCache,
           headers: {
             'Cache-Control': 'no-cache',
             'Pragma': 'no-cache'
@@ -78,11 +78,11 @@ export default function Home() {
           ];
           
           const fetchOptions = {
-            cache: 'no-store',
             headers: {
               'Cache-Control': 'no-cache',
               'Pragma': 'no-cache'
-            }
+            },
+            cache: 'no-store' as RequestCache
           };
           
           const metrics = await Promise.all([

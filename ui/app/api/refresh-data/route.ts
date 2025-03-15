@@ -69,7 +69,7 @@ export async function POST(request: NextRequest) {
     } catch (fetchError) {
       console.error("Fetch error:", fetchError);
       return NextResponse.json(
-        { error: `Failed to connect to backend: ${fetchError.message}` },
+        { error: `Failed to connect to backend: ${fetchError instanceof Error ? fetchError.message : 'Unknown error'}` },
         { status: 500 }
       );
     }
